@@ -1,4 +1,4 @@
-package com.example.lwk.beans.Fragment.LWKModel;
+package com.example.lwk.beans.LWKModel;
 
 /**
  * Created by LWK on 2016/11/28.

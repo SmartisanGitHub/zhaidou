@@ -1,4 +1,4 @@
-package com.example.lwk.beans.Fragment.LWKModel;
+package com.example.lwk.beans.LWKModel;
 
 import java.util.List;
 

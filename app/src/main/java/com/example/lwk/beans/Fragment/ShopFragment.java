@@ -9,18 +9,16 @@ import android.view.ViewGroup;
 import com.example.lwk.beans.R;
 
 /**
- * Created by LWK on 2016/11/26.
+ * Created by LWK on 2016/11/28.
  */
-public class ShopFragment extends BaseFragment{
-
-    public static final String TAG = ShopFragment.class.getSimpleName();
+public class ShopFragment extends BaseFragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         layout = inflater.inflate(R.layout.shop_main_fragment,container,false);
-
         return layout;
     }
+
 }
