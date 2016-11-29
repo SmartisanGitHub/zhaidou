@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@mipmap/zhulang0" android:duration="150"/>
+    <item android:drawable="@mipmap/zhulang1" android:duration="150"/>
+    <item android:drawable="@mipmap/zhulang2" android:duration="150"/>
+    <item android:drawable="@mipmap/zhulang3" android:duration="150"/>
+    <item android:drawable="@mipmap/zhulang4" android:duration="150"/>
+    <item android:drawable="@mipmap/zhulang5" android:duration="150"/>
+</animation-list>

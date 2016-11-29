@@ -3,9 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+
+    <com.example.lwk.beans.weight.MaoPullToRefreshRecyclerView
+        android:id="@+id/home_RecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="首页"/>
+        android:layout_height="match_parent"></com.example.lwk.beans.weight.MaoPullToRefreshRecyclerView>
+
+
 </LinearLayout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="220dp">
+
+    <ImageView
+        android:id="@+id/home_item_mainPic"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@mipmap/ic_launcher"
+        />
+    <TextView
+        android:id="@+id/home_item_caseName"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="咫尺之间，乐宅其中"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="@dimen/margin"
+        android:layout_gravity="center_vertical"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        />
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="20dp"
+      android:orientation="horizontal"
+      >
+      <TextView
+          android:id="@+id/home_item_mainDesc"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_marginLeft="10dp"
+          android:layout_weight="5"
+          android:lines="1"
+          android:textSize="12sp"
+          android:singleLine="true"
+          android:text="属性"
+          android:gravity="center_vertical"
+          android:textColor="#2d2b2b"
+          />
+      <TextView
+          android:id="@+id/home_item_comment"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:textSize="12sp"
+          android:gravity="center_vertical"
+          android:text="评论"
+          />
+  </LinearLayout>
+
+
+
+
+
+</LinearLayout>
