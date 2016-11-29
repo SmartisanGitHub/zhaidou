@@ -20,12 +20,15 @@ import com.example.lwk.beans.Fragment.ShoppingcartFragment;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, NavigationView.OnNavigationItemSelectedListener{
 
+    private static final String TAG = MainActivity.class.getSimpleName();
     private RadioGroup mRadioGroup;
     private Fragment mFragmentShow;
     private NavigationView mNevigation;
     private DrawerLayout mDraw;
+
+    public String ms ="no";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 break;
             case R.id.beans_main_controller_magic :
                 switchPage(MagicFragment.TAG,MagicFragment.class);
+
                 break;
             case R.id.beans_main_controller_shoppingcart:
                 switchPage(ShoppingcartFragment.TAG,ShoppingcartFragment.class);
@@ -93,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             try {
                 mFragmentShow= cls.getConstructor().newInstance();
                 transaction.add(R.id.beans_main_fragmentshow,mFragmentShow,tag);
+
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
@@ -109,10 +114,13 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     }
 
 
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         item.setChecked(true);
         mDraw.closeDrawers();
         return true;
     }
+
+
 }

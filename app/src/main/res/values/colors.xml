@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="clicked">#7958585b</color>
+    <color name="noclicked">#ffffff</color>
+    <color name="magic_zhinan_image_back">#39495D</color>
+    <color name="blue">#40BEBD</color>
+    <color name="girent">#999999</color>
 </resources>
