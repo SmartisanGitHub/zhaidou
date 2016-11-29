@@ -1,5 +1,6 @@
 package com.example.lwk.beans.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.lwk.beans.R;
+import com.example.lwk.beans.WanActivity.DIYdapeiFragment;
 import com.example.lwk.beans.WanActivity.ZaiXianfragment;
 import com.example.lwk.beans.WanActivity.ZhinanFragment;
 
@@ -77,6 +79,8 @@ public class MagicFragment extends BaseFragment implements View.OnClickListener 
                 mFragmentShow =new ZhinanFragment();
                 break;
             case R.id.magic_diy_dapei:
+                Intent intent = new Intent(getActivity(), DIYdapeiFragment.class);
+                startActivity(intent);
                 break;
             case R.id.magic_gaizaoanli:
                 break;

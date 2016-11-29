@@ -1,9 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lwk.beans.WanActivity.MagicActivity">
+    android:orientation="vertical"
+    android:background="#F1F1F1"
+    tools:context=".WanActivity.DIYdapeiFragment">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/wan_magic_zhinan_imageHeight"
+        android:background="#39495D"
+        >
+        <ImageView
+            android:id="@+id/goback_img"
+            android:layout_width="@dimen/wan_magic_zhinan_imageHeight"
+            android:layout_height="@dimen/wan_magic_zhinan_imageHeight"
+            android:src="@mipmap/icon_back"
+            style="@style/magic_zhinan_image" />
+        <TextView
+            android:id="@+id/goback_txt"
+            android:layout_width="@dimen/wan_magic_zhinan_imageHeight"
+            android:layout_height="@dimen/wan_magic_zhinan_imageHeight"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:text="返回"
+            android:textColor="#fff"
+            android:layout_toRightOf="@+id/goback_img"/>
 
-</RelativeLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/diy_hint"/>
+
+</LinearLayout>
