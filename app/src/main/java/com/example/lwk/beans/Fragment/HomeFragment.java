@@ -2,6 +2,7 @@ package com.example.lwk.beans.Fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -30,7 +31,7 @@ import java.util.List;
 /**
  * Created by LWK on 2016/11/26.
  */
-public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRefreshListener2 {
+public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRefreshListener, View.OnClickListener {
 
     public static final String TAG = HomeFragment.class.getSimpleName();
     private MaoPullToRefreshRecyclerView mRecycler;
@@ -41,6 +42,7 @@ public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRe
     private RecyclerView refreshableView;
     private HomeAdapter adapter;
     private List<HomeList>data=new ArrayList<>();
+    private FloatingActionButton mFloatButton;
 
     @Nullable
     @Override
@@ -156,9 +158,12 @@ public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRe
     }
 
     private void initView() {
+        mFloatButton = (FloatingActionButton)layout.findViewById(R.id.home_FloatingActionButton);
+        mFloatButton.setOnClickListener(this);
+
         mRecycler = ((MaoPullToRefreshRecyclerView) layout.findViewById(R.id.home_RecyclerView));
         mRecycler.setOnRefreshListener(this);
-        mRecycler.setMode(PullToRefreshBase.Mode.BOTH);
+        mRecycler.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
 
         refreshableView = mRecycler.getRefreshableView();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -172,18 +177,25 @@ public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRe
         time= dt.getTime();
     }
 
+    @Override
+    public void onClick(View v) {
+        refreshableView.scrollToPosition(0);
+
+    }
+
+    @Override
+    public void onRefresh(PullToRefreshBase refreshView) {
+        setupView(State.DOWN);
+    }
+
+
+
+
+
 
     enum State {
         DOWN, UP
     }
 
-    @Override
-    public void onPullDownToRefresh(PullToRefreshBase refreshView) {
-        setupView(State.DOWN);
-    }
 
-    @Override
-    public void onPullUpToRefresh(PullToRefreshBase refreshView) {
-        setupView(State.UP);
-    }
 }
