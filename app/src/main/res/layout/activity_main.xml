@@ -16,7 +16,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginBottom="0dp">
+        android:layout_marginBottom="0dp"
+        >
 
         <RadioGroup
             android:id="@+id/beans_main_controller"
@@ -31,35 +32,60 @@
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:checked="true"
-                android:gravity="center" />
+                android:gravity="center"
+                android:button="@null"
+                android:drawableTop="@drawable/icon_main_home"
+                android:text="首页"
+                android:textSize="12sp"
+                android:textColor="@drawable/radiobutton_color"/>
 
             <RadioButton
                 android:id="@+id/beans_main_controller_shop"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:gravity="center" />
+                android:gravity="center"
+                android:button="@null"
+                android:drawableTop="@drawable/icon_main_goods"
+                android:text="商城"
+                android:textSize="12sp"
+                android:textColor="@drawable/radiobutton_color"/>
 
             <RadioButton
                 android:id="@+id/beans_main_controller_magic"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:gravity="center" />
+                android:gravity="center"
+                android:button="@null"
+                android:drawableTop="@drawable/icon_main_magic"
+                android:text="软装魔法"
+                android:textSize="12sp"
+                android:textColor="@drawable/radiobutton_color"/>
 
             <RadioButton
                 android:id="@+id/beans_main_controller_shoppingcart"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:gravity="center" />
+                android:gravity="center"
+                android:button="@null"
+                android:drawableTop="@drawable/icon_main_cart"
+                android:text="购物车"
+                android:textSize="12sp"
+                android:textColor="@drawable/radiobutton_color"/>
 
             <RadioButton
                 android:id="@+id/beans_main_controller_mine"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:gravity="center" />
+                android:gravity="center"
+                android:button="@null"
+                android:drawableTop="@drawable/icon_main_account"
+                android:text="我的"
+                android:textSize="12sp"
+                android:textColor="@drawable/radiobutton_color"/>
 
         </RadioGroup>
     </FrameLayout>
