@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lwk.beans">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:name=".Initialization"
         android:allowBackup="true"
@@ -17,7 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WanActivity.DIYdapeiFragment"></activity>
+        <activity android:name=".WanActivity.DIYdapeiFragment" />
+        <activity android:name=".WanActivity.SoftPhotosfragment"></activity>
+        <activity android:name=".WanActivity.ZhinanFragment"></activity>
     </application>
 
 </manifest>
