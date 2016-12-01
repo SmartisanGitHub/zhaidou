@@ -3,17 +3,15 @@ package com.example.lwk.beans.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.lwk.beans.R;
 import com.example.lwk.beans.WanActivity.DIYdapeiFragment;
-import com.example.lwk.beans.WanActivity.ZaiXianfragment;
+import com.example.lwk.beans.WanActivity.SoftPhotosfragment;
 import com.example.lwk.beans.WanActivity.ZhinanFragment;
 
 /**
@@ -30,7 +28,6 @@ public class MagicFragment extends BaseFragment implements View.OnClickListener 
     private ImageView mSheCaiketang;
     private ImageView mZhiNan;
     private ImageView mZaiXiansheji;
-    private Fragment mFragmentShow;
     private View layout;
 
 
@@ -70,33 +67,40 @@ public class MagicFragment extends BaseFragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
-        mFragmentShow = new MagicFragment();
-        transaction.hide(mFragmentShow);
+        Intent intent =new Intent(getActivity(), ZhinanFragment.class) ;
+        Intent intent2 = new Intent(getActivity(), SoftPhotosfragment.class);
         switch (v.getId()) {
             case R.id.magic_ruanzhuangzhinan:
-                mFragmentShow =new ZhinanFragment();
-                break;
-            case R.id.magic_diy_dapei:
-                Intent intent = new Intent(getActivity(), DIYdapeiFragment.class);
+                intent.putExtra("name","http://m.zhaidou.com/decorate/guide?source=android");
                 startActivity(intent);
                 break;
+            case R.id.magic_diy_dapei:
+                Intent intent1 = new Intent(getActivity(), DIYdapeiFragment.class);
+                startActivity(intent1);
+                break;
             case R.id.magic_gaizaoanli:
+                intent.putExtra("name","http://m.zhaidou.com/case");
+                startActivity(intent);
                 break;
             case R.id.magic_ruanzhuangtuku:
+                Toast.makeText(getActivity(), "软件图库", Toast.LENGTH_SHORT).show();
+                startActivity(intent2);
                 break;
             case R.id.magic_shecaiketang:
+                Toast.makeText(getActivity(), "色彩课堂", Toast.LENGTH_SHORT).show();
+                intent2.putExtra("name","http://portal-web.zhaidou.com/zd/getPosts.action?plug=006&pageSize=10&pageNo=1");
+                intent2.putExtra("stra","color");
+                startActivity(intent2);
                 break;
             case R.id.magic_zhaixiansheji:
-                mFragmentShow =new ZaiXianfragment();
+                intent.putExtra("name","http://www.zhaidou.com/design?source=android");
+                startActivity(intent);
                 break;
             case R.id.gotokefu:
+                intent.putExtra("name","http://m.zhaidou.com/service");
+                startActivity(intent);
                 break;
         }
-        transaction.show(mFragmentShow);
-        transaction.add(R.id.beans_main_fragmentshow,mFragmentShow);
-        transaction.commit();
     }
 
 
