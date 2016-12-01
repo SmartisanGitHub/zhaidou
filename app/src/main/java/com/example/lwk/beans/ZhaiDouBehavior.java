@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -16,8 +17,10 @@ import android.view.animation.Interpolator;
  */
 public class ZhaiDouBehavior extends CoordinatorLayout.Behavior {
     private static final String TAG = ZhaiDouBehavior.class.getSimpleName();
-    private int Y_height = 0;
+    public static int Y_height = 0;
     private static final Interpolator INTERPOLATOR = new FastOutSlowInInterpolator();
+   private RecyclerView mRecyclerView;
+
     public ZhaiDouBehavior() {
     }
 
@@ -37,9 +40,23 @@ public class ZhaiDouBehavior extends CoordinatorLayout.Behavior {
 
 
 //        Log.e(TAG, "onNestedPreScroll: " + dy);
-//        Log.e(TAG, "onNestedPreScroll_height: " + Y_height);
+        Log.e(TAG, "onNestedPreScroll_height: " + Y_height);
+        mRecyclerView = (RecyclerView) target;
+        View childAt = mRecyclerView.getChildAt(0);
+        if (childAt==null){
+            return;
+        }
+        RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) childAt.getLayoutParams();
+        int topMargin = layoutParams.topMargin;
+        int top = childAt.getTop();
+        int paddingTop = mRecyclerView.getPaddingTop();
+        if (top==paddingTop+topMargin){
+            Y_height=0;
+        }
+
+        Log.e(TAG, "onNestedPreScroll: "+coordinatorLayout.getChildCount() );
         Y_height += dy;
-        if (Y_height < 400) {
+        if (Y_height < 300) {
             if(Y_height<0){
                 Y_height=0;
 //                Log.e(TAG, "onNestedPreScroll_height: " + Y_height);

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.lwk.beans.LWKAdapter.HomeAdapter;
@@ -16,6 +17,7 @@ import com.example.lwk.beans.LWKModel.HomeHeaderList;
 import com.example.lwk.beans.LWKModel.HomeList;
 import com.example.lwk.beans.LWKModel.HomeitemList;
 import com.example.lwk.beans.R;
+import com.example.lwk.beans.ZhaiDouBehavior;
 import com.example.lwk.beans.weight.MaoPullToRefreshRecyclerView;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -31,7 +33,7 @@ import java.util.List;
 /**
  * Created by LWK on 2016/11/26.
  */
-public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRefreshListener, View.OnClickListener {
+public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRefreshListener, View.OnClickListener, HomeAdapter.SendImageMessage {
 
     public static final String TAG = HomeFragment.class.getSimpleName();
     private MaoPullToRefreshRecyclerView mRecycler;
@@ -43,6 +45,7 @@ public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRe
     private HomeAdapter adapter;
     private List<HomeList>data=new ArrayList<>();
     private FloatingActionButton mFloatButton;
+    private ProgressBar mProgressBar;
 
     @Nullable
     @Override
@@ -58,6 +61,7 @@ public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRe
         initView();
         initHeader();
         setupView(State.DOWN);
+        adapter.setListener(this);
     }
 
     private void initHeader() {
@@ -160,6 +164,7 @@ public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRe
     private void initView() {
         mFloatButton = (FloatingActionButton)layout.findViewById(R.id.home_FloatingActionButton);
         mFloatButton.setOnClickListener(this);
+        mProgressBar = ((ProgressBar) layout.findViewById(R.id.home_prigressbar));
 
         mRecycler = ((MaoPullToRefreshRecyclerView) layout.findViewById(R.id.home_RecyclerView));
         mRecycler.setOnRefreshListener(this);
@@ -180,7 +185,7 @@ public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRe
     @Override
     public void onClick(View v) {
         refreshableView.scrollToPosition(0);
-
+        ZhaiDouBehavior.Y_height=0;
     }
 
     @Override
@@ -188,9 +193,12 @@ public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRe
         setupView(State.DOWN);
     }
 
-
-
-
+    @Override
+    public void sendload(Boolean load) {
+        if (load) {
+            mProgressBar.setVisibility(ProgressBar.GONE);
+        }
+    }
 
 
     enum State {

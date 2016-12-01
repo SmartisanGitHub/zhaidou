@@ -1,14 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ProgressBar
+        android:id="@+id/home_prigressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        style="@style/progressBar_custom_drawable"
+        />
+
+<android.support.design.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="宅豆家居"
+            android:textSize="18sp"
+            android:textColor="#4e4c4c"
+            />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/say"
+            android:padding="2dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            />
+
+    </RelativeLayout>
+
+
     <com.example.lwk.beans.weight.MaoPullToRefreshRecyclerView
         android:id="@+id/home_RecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.example.lwk.beans.weight.MaoPullToRefreshRecyclerView>
+        android:layout_height="match_parent"
+        android:layout_marginTop="45dp"
+        ></com.example.lwk.beans.weight.MaoPullToRefreshRecyclerView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/home_FloatingActionButton"
@@ -16,10 +55,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="20dp"
+
         android:src="@mipmap/goods_details_to_top_icon"
         app:fabSize="mini"
         app:borderWidth="0dp"
         app:backgroundTintMode="src_in"
         app:layout_behavior="com.example.lwk.beans.ZhaiDouBehavior" />
-
 </android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

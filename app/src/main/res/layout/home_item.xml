@@ -36,7 +36,6 @@
           android:lines="1"
           android:textSize="12sp"
           android:singleLine="true"
-          android:text="属性"
           android:gravity="center_vertical"
           android:textColor="#2d2b2b"
           />
@@ -47,7 +46,6 @@
           android:layout_weight="1"
           android:textSize="12sp"
           android:gravity="center_vertical"
-          android:text="评论"
           />
   </LinearLayout>
 

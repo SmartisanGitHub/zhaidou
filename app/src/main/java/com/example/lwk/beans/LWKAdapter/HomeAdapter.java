@@ -1,6 +1,7 @@
 package com.example.lwk.beans.LWKAdapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,10 +24,16 @@ import java.util.List;
 public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final String TAG = HomeAdapter.class.getSimpleName();
-    private List<HomeList>data;
+    private List<HomeList> data;
     private LayoutInflater inflater;
     public static final int IS_HEADER = 0;
     public static final int IS_ITEM = 1;
+    private Boolean loading;
+    private SendImageMessage message;
+
+    public void setListener(SendImageMessage message) {
+        this.message = message;
+    }
 
     public HomeAdapter(Context context) {
         data = new ArrayList<>();
@@ -65,6 +72,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             imageView0 = (ImageView) itemView.findViewById(R.id.home_header_image0);
             imageView1 = (ImageView) itemView.findViewById(R.id.home_header_image1);
             imageView2 = (ImageView) itemView.findViewById(R.id.home_header_image2);
+
         }
     }
 
@@ -85,7 +93,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if (position==0) {
+        if (position == 0) {
             return IS_HEADER;
         } else {
             return IS_ITEM;
@@ -104,24 +112,32 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof HeaderHolder) {
-            x.image().bind(((HeaderHolder)holder).imageView,data.get(position).getHea_Image());
-            x.image().bind(((HeaderHolder)holder).imageView0,data.get(position).getHea_Image0());
-            x.image().bind(((HeaderHolder)holder).imageView1,data.get(position).getHea_Image1());
-            x.image().bind(((HeaderHolder)holder).imageView2,data.get(position).getHea_Image2());
+            x.image().bind(((HeaderHolder) holder).imageView, data.get(position).getHea_Image());
+            x.image().bind(((HeaderHolder) holder).imageView0, data.get(position).getHea_Image0());
+            x.image().bind(((HeaderHolder) holder).imageView1, data.get(position).getHea_Image1());
+            x.image().bind(((HeaderHolder) holder).imageView2, data.get(position).getHea_Image2());
 
 
         } else if (holder instanceof ItemViewHolder) {
-            ((ItemViewHolder) holder).caseName.setText(data.get(position ).getCaseName());
-            ((ItemViewHolder) holder).mainDesc.setText(data.get(position ).getMainDesc());
-            ((ItemViewHolder) holder).comment.setText("评论" + data.get(position ).getComment());
-            x.image().bind(((ItemViewHolder) holder).imageView,data.get(position).getItem_Image());
+            ((ItemViewHolder) holder).caseName.setText(data.get(position).getCaseName());
+            ((ItemViewHolder) holder).mainDesc.setText(data.get(position).getMainDesc());
+            ((ItemViewHolder) holder).comment.setText("评论" + data.get(position).getComment());
+            x.image().bind(((ItemViewHolder) holder).imageView, data.get(position).getItem_Image());
+            loading = ((ItemViewHolder) holder).mainDesc.getText() != null;
+            message.sendload(loading);
+
         }
 
     }
 
     @Override
     public int getItemCount() {
-        Log.e(TAG, "getItemCount: "+data.size() );
-        return data != null ? data.size()  : 0;
+        return data != null ? data.size() : 0;
     }
+
+    public interface SendImageMessage {
+        void sendload(Boolean load);
+
+    }
+
 }
