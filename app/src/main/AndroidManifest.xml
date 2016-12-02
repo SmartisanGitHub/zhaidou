@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
         android:name=".Initialization"
@@ -30,7 +32,6 @@
         </activity>
 
 
-        <activity android:name=".WanActivity.DIYdapeiFragment"></activity>
 
 
         <activity
@@ -54,6 +55,13 @@
             </intent-filter>
         </activity>
 
+
+        <activity android:name=".WanActivity.DIYdapeiFragment"/>
+        <activity android:name=".WanActivity.SoftPhotosfragment"></activity>
+        <activity android:name=".WanActivity.ZhinanFragment"></activity>
+
+        <meta-data android:value="YOUR_APP_KEY" android:name="5840d8e0717c19710c001063"/>
+        <meta-data android:value="ChannelID" android:name="Study"/>
     </application>
 
 </manifest>

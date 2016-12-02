@@ -23,6 +23,7 @@ public class FrameAnimation extends LoadingLayout {
 
     }
 
+
     @Override
     protected int getDefaultDrawableResId() {
         return R.mipmap.zhulang0;

@@ -1,13 +1,17 @@
 package com.example.lwk.beans.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.lwk.beans.LWKAdapter.HomeAdapter;
@@ -15,9 +19,12 @@ import com.example.lwk.beans.LWKModel.HomeHeaderList;
 import com.example.lwk.beans.LWKModel.HomeList;
 import com.example.lwk.beans.LWKModel.HomeitemList;
 import com.example.lwk.beans.R;
+import com.example.lwk.beans.WanActivity.ZhinanFragment;
+import com.example.lwk.beans.ZhaiDouBehavior;
 import com.example.lwk.beans.weight.MaoPullToRefreshRecyclerView;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.umeng.analytics.MobclickAgent;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -30,7 +37,7 @@ import java.util.List;
 /**
  * Created by LWK on 2016/11/26.
  */
-public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRefreshListener2 {
+public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRefreshListener, View.OnClickListener, HomeAdapter.SendImageMessage, HomeAdapter.OnItemClickListener {
 
     public static final String TAG = HomeFragment.class.getSimpleName();
     private MaoPullToRefreshRecyclerView mRecycler;
@@ -41,6 +48,16 @@ public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRe
     private RecyclerView refreshableView;
     private HomeAdapter adapter;
     private List<HomeList>data=new ArrayList<>();
+    private FloatingActionButton mFloatButton;
+    private ProgressBar mProgressBar;
+    private ImageView mIcon;
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart(TAG);
+    }
 
     @Nullable
     @Override
@@ -49,6 +66,7 @@ public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRe
         return layout;
     }
 
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -56,6 +74,8 @@ public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRe
         initView();
         initHeader();
         setupView(State.DOWN);
+        adapter.setListener(this);
+        adapter.setitemListener(this);
     }
 
     private void initHeader() {
@@ -123,6 +143,7 @@ public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRe
                     model.setCaseName(homeitemList.getData().getFreeClassicsCasePOs().get(i).getCaseName());
                     model.setMainDesc(homeitemList.getData().getFreeClassicsCasePOs().get(i).getMainDesc());
                     model.setComment(homeitemList.getData().getFreeClassicsCasePOs().get(i).getCommentCount()+"");
+                    model.setId(homeitemList.getData().getFreeClassicsCasePOs().get(i).getId()+"");
                     data.add(model);
                     Log.e(TAG, "onSuccess: "+data.size() );
                 }
@@ -156,9 +177,14 @@ public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRe
     }
 
     private void initView() {
+        mFloatButton = (FloatingActionButton)layout.findViewById(R.id.home_FloatingActionButton);
+        mFloatButton.setOnClickListener(this);
+        mProgressBar = ((ProgressBar) layout.findViewById(R.id.home_prigressbar));
+        mIcon = ((ImageView) layout.findViewById(R.id.home_icon));
+
         mRecycler = ((MaoPullToRefreshRecyclerView) layout.findViewById(R.id.home_RecyclerView));
         mRecycler.setOnRefreshListener(this);
-        mRecycler.setMode(PullToRefreshBase.Mode.BOTH);
+        mRecycler.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
 
         refreshableView = mRecycler.getRefreshableView();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -172,18 +198,59 @@ public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRe
         time= dt.getTime();
     }
 
+    @Override
+    public void onClick(View v) {
+        refreshableView.scrollToPosition(0);
+        ZhaiDouBehavior.Y_height=0;
+    }
+
+    @Override
+    public void onRefresh(PullToRefreshBase refreshView) {
+        setupView(State.DOWN);
+    }
+
+    @Override
+    public void sendload(Boolean load) {
+        if (load) {
+            mProgressBar.setVisibility(ProgressBar.GONE);
+            mIcon.setVisibility(ImageView.GONE);
+        }
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        if(position>=1) {
+            String id = adapter.GetId(position);
+            String url = "http://www.zhaidou.com/case/" + id + ".html";
+            Log.e(TAG, "sendPosition: "+url );
+            Intent intent=new Intent(getActivity(), ZhinanFragment.class);
+            intent.putExtra("name",url);
+            startActivity(intent);
+        }
+    }
+
+
+//    @Override
+//    public void sendPosition(int position) {
+//        if(position>=1) {
+//            String id = adapter.GetId(position);
+//            String url = "http://www.zhaidou.com/case/" + id + ".html";
+//            Log.e(TAG, "sendPosition: "+url );
+//            Intent intent=new Intent();
+//            intent.putExtra("name",url);
+//            startActivity(intent);
+//        }
+
+//    }
+
 
     enum State {
         DOWN, UP
     }
 
     @Override
-    public void onPullDownToRefresh(PullToRefreshBase refreshView) {
-        setupView(State.DOWN);
-    }
-
-    @Override
-    public void onPullUpToRefresh(PullToRefreshBase refreshView) {
-        setupView(State.UP);
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageStart(TAG);
     }
 }

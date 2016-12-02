@@ -15,6 +15,8 @@ import com.handmark.pulltorefresh.library.internal.LoadingLayout;
  */
 public class MaoPullToRefreshRecyclerView extends PullToRefreshBase<RecyclerView> {
 
+    private boolean canload;
+    private int mLastChildCount =0;
 
     public MaoPullToRefreshRecyclerView(Context context) {
         super(context);
@@ -47,17 +49,28 @@ public class MaoPullToRefreshRecyclerView extends PullToRefreshBase<RecyclerView
     @Override
     protected boolean isReadyForPullEnd() {
         RecyclerView refreshableView = getRefreshableView();
-        int height = refreshableView.getHeight();
+
+        //获取当前数据总数
+        int childCount = refreshableView.getAdapter().getItemCount();
+        //int childCount = refreshableView.getAdapter().getItemCount();
+        canload = childCount > mLastChildCount ? false : true;
+        mLastChildCount = childCount;
+
+        //获取RecyclerView的height
+        int refreshableViewHeight = refreshableView.getHeight();
+        //获取底边距
         int paddingBottom = refreshableView.getPaddingBottom();
-        int childCount = refreshableView.getChildCount();
-        View childAt = refreshableView.getChildAt(childCount - 1);
-        if (childAt==null) {
+//获取最后一个child
+        View childAtEnd = refreshableView.getChildAt(refreshableView.getChildCount() - 1);
+        if (childAtEnd == null) {
             return false;
         }
-        int bottom = childAt.getBottom();
-        RecyclerView.LayoutParams layoutParams= (RecyclerView.LayoutParams) childAt.getLayoutParams();
+        // 获取最后一个item距离RecyclerView顶部的距离
+        int childAtEndBottom = childAtEnd.getBottom();
+        //获取最后一个item的底部外边距
+        RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) childAtEnd.getLayoutParams();
         int bottomMargin = layoutParams.bottomMargin;
-        return height==paddingBottom+bottom+bottomMargin;
+        return (refreshableViewHeight == paddingBottom + childAtEndBottom + bottomMargin) && canload;
     }
 
     @Override
@@ -78,6 +91,6 @@ public class MaoPullToRefreshRecyclerView extends PullToRefreshBase<RecyclerView
     @Override
     protected LoadingLayout createLoadingLayout(Context context, Mode mode, TypedArray attrs) {
 
-        return new FrameAnimation(context, mode,getPullToRefreshScrollDirection(),attrs);
+        return new FrameAnimation(context, mode, getPullToRefreshScrollDirection(), attrs);
     }
 }
