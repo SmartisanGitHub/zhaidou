@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3FDBDA"
+    tools:context="com.example.lwk.beans.WanActivity.SoftPhotosfragment">
+    <ImageView
+        android:id="@+id/goback_img"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:paddingTop="20dp"
+        android:onClick="goBack"
+        android:paddingBottom="10dp"
+        android:src="@mipmap/icon_back"/>
+    <TextView
+        android:id="@+id/goback_txt"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="返回"
+        android:paddingTop="10dp"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="#fff"/>
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:textSize="25dp"
+        android:textColor="#fff"
+        android:text="软装图例"
+        />
+    <ListView
+        android:id="@+id/softphotos"
+        android:layout_below="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+</RelativeLayout>
