@@ -15,7 +15,6 @@ import com.example.lwk.beans.Fragment.HomeFragment;
 import com.example.lwk.beans.Fragment.MagicFragment;
 import com.example.lwk.beans.Fragment.MineFragment;
 import com.example.lwk.beans.Fragment.ShopFragment;
-import com.example.lwk.beans.Fragment.ShopHeader;
 import com.example.lwk.beans.Fragment.ShoppingcartFragment;
 
 import java.lang.reflect.InvocationTargetException;
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 switchPage(HomeFragment.TAG,HomeFragment.class);
                 break;
             case R.id.beans_main_controller_shop:
-                switchPage(ShopHeader.TAG,ShopFragment.class);
+                switchPage(ShopFragment.TAG,ShopFragment.class);
                 break;
             case R.id.beans_main_controller_magic :
                 switchPage(MagicFragment.TAG,MagicFragment.class);

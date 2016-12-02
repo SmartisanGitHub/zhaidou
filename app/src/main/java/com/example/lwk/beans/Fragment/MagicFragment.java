@@ -19,7 +19,7 @@ import com.example.lwk.beans.WanActivity.ZhinanFragment;
 /**
  * Created by LWK on 2016/11/26.
  */
-public class MagicFragment extends BaseFragment implements View.OnClickListener {
+public class MagicFragment extends com.example.lwk.beans.Fragment.BaseFragment implements View.OnClickListener {
 
 
     public static final String TAG = MagicFragment.class.getSimpleName();

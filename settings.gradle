@@ -1,1 +1,1 @@
-include ':app', ':okhttputils', ':teachlibrary', ':pulltorefresh'
+include ':app', ':teachlibrary', ':pulltorefresh'

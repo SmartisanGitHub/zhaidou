@@ -11,6 +11,7 @@ public class BaseFragment extends Fragment {
 
     protected View layout;
 
+
     public BaseFragment (){}
 
     public void BaseFragment(View layout) {

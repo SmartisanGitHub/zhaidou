@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="新用户注册"
+        android:textSize="15sp"
+        android:textColor="#000000"
+        android:gravity="center"/>
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@mipmap/phone"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="20dp"/>
+    <EditText
+        android:layout_width="310dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginLeft="50dp"
+        android:hint="输入手机号"/>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="140dp"
+        android:background="#2b9c97"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+
+        android:text="下一步"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="已有账号？"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="250dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="330dp"
+        android:textColor="#387e6f"
+        android:text="登陆"/>
+</RelativeLayout>

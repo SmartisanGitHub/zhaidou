@@ -2,7 +2,6 @@ package com.example.lwk.beans.LWKAdapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,7 +120,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        Log.e(TAG, "getItemCount: "+data.size() );
+       // Log.e(TAG, "getItemCount: "+data.size() );
         return data != null ? data.size()  : 0;
     }
 }
