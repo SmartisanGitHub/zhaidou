@@ -19,6 +19,7 @@ import com.example.lwk.beans.Fragment.MineFragment;
 import com.example.lwk.beans.Fragment.ShopFragment;
 import com.example.lwk.beans.Fragment.ShopHeader;
 import com.example.lwk.beans.Fragment.ShoppingcartFragment;
+import com.umeng.analytics.MobclickAgent;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Timer;
@@ -33,6 +34,14 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private DrawerLayout mDraw;
     private boolean isExit = false;  //双击退出标志
     public String ms = "no";
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,5 +151,11 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             }
         }
        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
         android:name=".Initialization"
@@ -23,6 +24,9 @@
         <activity android:name=".WanActivity.DIYdapeiFragment" />
         <activity android:name=".WanActivity.SoftPhotosfragment"></activity>
         <activity android:name=".WanActivity.ZhinanFragment"></activity>
+
+        <meta-data android:value="YOUR_APP_KEY" android:name="5840d8e0717c19710c001063"/>
+        <meta-data android:value="ChannelID" android:name="Study"/>
     </application>
 
 </manifest>

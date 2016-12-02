@@ -15,6 +15,16 @@ public class HomeList {
     private String mainDesc;
     private String comment;
 
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getHea_Image() {
         return Hea_Image;
     }

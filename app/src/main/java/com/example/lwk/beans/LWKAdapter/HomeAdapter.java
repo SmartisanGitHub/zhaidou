@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.lwk.beans.Fragment.HomeFragment;
 import com.example.lwk.beans.LWKModel.HomeList;
 import com.example.lwk.beans.R;
 
@@ -21,7 +22,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/11/28.
  */
-public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
     private static final String TAG = HomeAdapter.class.getSimpleName();
     private List<HomeList> data;
@@ -30,16 +31,31 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final int IS_ITEM = 1;
     private Boolean loading;
     private SendImageMessage message;
-
+    private OnItemClickListener listener;
+    private RecyclerView mRecycerView;
     public void setListener(SendImageMessage message) {
         this.message = message;
+
     }
+public void setitemListener(OnItemClickListener listener){
+    this.listener=listener;
+}
 
     public HomeAdapter(Context context) {
         data = new ArrayList<>();
         inflater = LayoutInflater.from(context);
     }
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        mRecycerView=recyclerView;
+    }
 
+    @Override
+    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView);
+        mRecycerView=null;
+    }
 
     public void updateRes(List<HomeList> data) {
         if (data != null) {
@@ -59,6 +75,14 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     }
 
+    @Override
+    public void onClick(View v) {
+        int childAdapterPosition = mRecycerView.getChildAdapterPosition(v);
+        if (message!=null) {
+            listener.onItemClick(childAdapterPosition);
+        }
+    }
+
 
     public class HeaderHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
@@ -72,9 +96,10 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             imageView0 = (ImageView) itemView.findViewById(R.id.home_header_image0);
             imageView1 = (ImageView) itemView.findViewById(R.id.home_header_image1);
             imageView2 = (ImageView) itemView.findViewById(R.id.home_header_image2);
-
         }
     }
+
+
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
@@ -117,7 +142,6 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             x.image().bind(((HeaderHolder) holder).imageView1, data.get(position).getHea_Image1());
             x.image().bind(((HeaderHolder) holder).imageView2, data.get(position).getHea_Image2());
 
-
         } else if (holder instanceof ItemViewHolder) {
             ((ItemViewHolder) holder).caseName.setText(data.get(position).getCaseName());
             ((ItemViewHolder) holder).mainDesc.setText(data.get(position).getMainDesc());
@@ -125,18 +149,23 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             x.image().bind(((ItemViewHolder) holder).imageView, data.get(position).getItem_Image());
             loading = ((ItemViewHolder) holder).mainDesc.getText() != null;
             message.sendload(loading);
-
         }
 
+        holder.itemView.setOnClickListener(this);
     }
 
     @Override
     public int getItemCount() {
         return data != null ? data.size() : 0;
     }
-
+    public String GetId(int position){
+        return data.get(position).getId();
+    }
     public interface SendImageMessage {
         void sendload(Boolean load);
+    }
+    public interface OnItemClickListener{
+        void onItemClick(int position);
 
     }
 
